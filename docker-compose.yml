@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - gateway
+    environment:
+      - VITE_API_URL=http://localhost:8000
+    networks:
+      - infrasight-network
+
+  gateway:
+    build:
+      context: ./gateway-service
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_KEY}
+      - PROCESSING_SERVICE_URL=http://processing:8001
+    depends_on:
+      - processing
+    networks:
+      - infrasight-network
+
+  processing:
+    build:
+      context: ./processing-service
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    networks:
+      - infrasight-network
+
+networks:
+  infrasight-network:
+    driver: bridge

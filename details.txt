@@ -1,0 +1,5 @@
+supabase database password: HFUjAES54cUDZS8j
+
+Project URL: https://jwluliwxpvkmenfjbcsw.supabase.co
+Publishable Key: sb_publishable_XzXQbCbzVLpqddgDKxNsbA__-bZGj5j
+Direct Connection String: postgresql://postgres:HFUjAES54cUDZS8j@db.jwluliwxpvkmenfjbcsw.supabase.co:5432/postgres
